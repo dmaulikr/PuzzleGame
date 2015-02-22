@@ -5,6 +5,7 @@ target 'HW_SlicedImages' do
 
 pod 'SDWebImage', '~>3.6'
 pod 'MBProgressHUD', '~> 0.8'
+pod "AFNetworking", "~> 2.0"
 
 end
 

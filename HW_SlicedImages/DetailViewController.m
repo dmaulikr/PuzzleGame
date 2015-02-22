@@ -7,14 +7,12 @@
 //
 
 #import "DetailViewController.h"
+#import "Game.h"
+#import "GameProperties.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface DetailViewController () <UIScrollViewDelegate> {
-    CGFloat rowsCount;
-    CGFloat columnsCount;
-    CGFloat elemWidth;
-    CGFloat elemHieght;
-    NSArray *imagesArray;
+    GameProperties *properties;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *mainView;
@@ -33,10 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setupSizes];
+    properties = [[Game sharedInstance] getGameProperties];
+    
     [self resizeMainView];
-    [self createArrayOfEmptyImages];
-    [self loadImages];
+    [self addArrayWithEmptyImagesOnMainView];
+    [[Game sharedInstance] completeArrayWithImages];
+
     
     self.scrollView.delegate = self;
     float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
@@ -45,59 +45,19 @@
     self.scrollView.maximumZoomScale=6.0;
 }
 
-- (void)setupSizes
-{
-    rowsCount = [self.dict[@"rows_count"] floatValue];
-    columnsCount = [self.dict[@"columns_count"] floatValue];
-    elemWidth = [self.dict[@"elem_width"] floatValue];
-    elemHieght = [self.dict[@"elem_height"] floatValue];
-}
-
 - (void)resizeMainView
 {
-    self.widthOfView.constant = elemWidth * columnsCount;
-    self.heightOfView.constant = elemHieght * rowsCount;
+    self.widthOfView.constant = properties.elemWidth * properties.columnsCount;
+    self.heightOfView.constant = properties.elemHieght * properties.rowsCount;
     [self.mainView setNeedsUpdateConstraints];
 }
 
-- (void)createArrayOfEmptyImages
+- (void)addArrayWithEmptyImagesOnMainView
 {
-    NSMutableArray *arr = [NSMutableArray new];
-    for (int i = 0; i < rowsCount; i++) {
-        NSMutableArray *elementsInRow = [NSMutableArray new];
-        for (int j = 0; j < columnsCount; j++) {
-            CGRect frame = CGRectMake(j * elemWidth, i * elemHieght, elemWidth, elemHieght);
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
-            [self.mainView addSubview:imgView];
-            [elementsInRow addObject:imgView];
-        }
-        [arr addObject:elementsInRow];
-    }
-    imagesArray = [arr copy];
-}
-
-- (void)setBordersForImageView: (UIImageView *)imageView
-{
-    UIColor *borderColor = [UIColor blackColor];
-    [imageView.layer setBorderColor:borderColor.CGColor];
-    [imageView.layer setBorderWidth:1.0];
-}
-
-- (void)prepareImagesForGame
-{
-    for (int i = 0; i < rowsCount; i++) {
-        for (int j = 0; j < columnsCount; j++) {
-            [self setBordersForImageView:imagesArray[i][j]];
-        }
-    }
-}
-
-- (void)loadImages
-{
-    for (int i = 0; i < rowsCount; i++) {
-        for (int j = 0; j < columnsCount; j++) {
-            NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/%@/%d_%d.png", self.dict[@"folder_name"], i, j]];
-            [imagesArray[i][j] sd_setImageWithURL:imageURL];
+    [[Game sharedInstance] createArrayWithEmptyImages];
+    for (NSArray *elementArray in [Game sharedInstance].imagesArray) {
+        for (UIImageView *imageView in elementArray) {
+            [self.mainView addSubview:imageView];
         }
     }
 }
@@ -131,8 +91,8 @@
     [self.view layoutIfNeeded];
 }
 
-- (IBAction)startGamePressed:(id)sender {
-    [self prepareImagesForGame];
+- (IBAction)startGamePressed:(UIButton *)sender {
+    
     
 }
 

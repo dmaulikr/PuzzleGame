@@ -27,15 +27,17 @@
         if (!error) {
             NSArray *objects = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
             if (!error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    completion(objects, nil);
-                });
+                completion(objects, nil);
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    completion(objects, nil);
+//                });
                 return;
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            completion(nil, error);
-        });
+        completion(nil, error);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            completion(nil, error);
+//        });
     }];
     [task resume];
 }

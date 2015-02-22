@@ -15,6 +15,8 @@
 		A80A46A81A8F2409001442C8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80A46A61A8F2409001442C8 /* LaunchScreen.xib */; };
 		A80A46B41A8F2409001442C8 /* HW_SlicedImagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A80A46B31A8F2409001442C8 /* HW_SlicedImagesTests.m */; };
 		B26C3CB91A96622D00E71C05 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26C3CB81A96622D00E71C05 /* DetailViewController.m */; };
+		B27E72DF1A9A46B700820AB6 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E72DE1A9A46B700820AB6 /* Game.m */; };
+		B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E72E41A9A497900820AB6 /* GameProperties.m */; };
 		B2A79AA21A94E4380062FAFF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA11A94E4380062FAFF /* TableViewController.m */; };
 		B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA41A94E7A50062FAFF /* NetManager.m */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,10 @@
 		A80A46B31A8F2409001442C8 /* HW_SlicedImagesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HW_SlicedImagesTests.m; sourceTree = "<group>"; };
 		B26C3CB71A96622D00E71C05 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B26C3CB81A96622D00E71C05 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		B27E72DD1A9A46B700820AB6 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		B27E72DE1A9A46B700820AB6 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		B27E72E31A9A497900820AB6 /* GameProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameProperties.h; sourceTree = "<group>"; };
+		B27E72E41A9A497900820AB6 /* GameProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameProperties.m; sourceTree = "<group>"; };
 		B2A79AA01A94E4380062FAFF /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		B2A79AA11A94E4380062FAFF /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		B2A79AA31A94E7A50062FAFF /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
@@ -153,6 +159,10 @@
 				A80A469B1A8F2409001442C8 /* AppDelegate.h */,
 				B2A79AA31A94E7A50062FAFF /* NetManager.h */,
 				B2A79AA41A94E7A50062FAFF /* NetManager.m */,
+				B27E72DD1A9A46B700820AB6 /* Game.h */,
+				B27E72DE1A9A46B700820AB6 /* Game.m */,
+				B27E72E31A9A497900820AB6 /* GameProperties.h */,
+				B27E72E41A9A497900820AB6 /* GameProperties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -313,8 +323,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B26C3CB91A96622D00E71C05 /* DetailViewController.m in Sources */,
+				B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */,
 				A80A469D1A8F2409001442C8 /* AppDelegate.m in Sources */,
 				B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */,
+				B27E72DF1A9A46B700820AB6 /* Game.m in Sources */,
 				B2A79AA21A94E4380062FAFF /* TableViewController.m in Sources */,
 				A80A469A1A8F2409001442C8 /* main.m in Sources */,
 			);
