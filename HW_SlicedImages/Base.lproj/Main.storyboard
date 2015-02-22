@@ -74,7 +74,21 @@
                             <constraint firstItem="iaT-p4-nhO" firstAttribute="leading" secondItem="QjW-Ua-PrN" secondAttribute="leading" id="ZbU-Qh-BaT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Hbw-9R-rzt"/>
+                    <navigationItem key="navigationItem" id="Hbw-9R-rzt">
+                        <barButtonItem key="rightBarButtonItem" title="Start game" style="plain" id="OqB-c1-3Wl">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PgT-Nr-iGm">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Start game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startGamePressed:" destination="hMj-Zc-cOE" eventType="touchUpInside" id="Evy-oa-xW6"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="constraintBottom" destination="0Mn-H1-wOx" id="F3o-PD-HCX"/>
                         <outlet property="constraintLeft" destination="M9u-tH-iHk" id="HiY-5n-CpG"/>

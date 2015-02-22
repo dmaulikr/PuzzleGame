@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "NetManager.h"
 #import "DetailViewController.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface TableViewController () {
     NSArray *myData;
@@ -20,17 +21,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadData];
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(reloadIfNescessary) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self reloadIfNescessary];
 }
 
 - (void)loadData
 {
     [[NetManager sharedInstance] getTitles:^(NSArray *arr, NSError *error) {
-        myData = arr;
+        if (!error) {
+            myData = arr;
+        } else {
+            myData = nil;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.detailsLabelText = @"Please check internet connection";
+            [hud hide:YES afterDelay:1.5];
+        }
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     }];
 }
 
+- (void)reloadIfNescessary
+{
+    [self.refreshControl beginRefreshing];
+    [self loadData];
+}
 
 #pragma mark - Table view data source
 

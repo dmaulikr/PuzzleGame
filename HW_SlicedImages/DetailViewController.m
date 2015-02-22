@@ -26,7 +26,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
 
-
 @end
 
 @implementation DetailViewController
@@ -40,7 +39,9 @@
     [self loadImages];
     
     self.scrollView.delegate = self;
-    self.scrollView.minimumZoomScale=0.2;
+    float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
+        self.view.bounds.size.height / self.heightOfView.constant);
+    self.scrollView.minimumZoomScale = (minZoom < 1) ? minZoom : 1;
     self.scrollView.maximumZoomScale=6.0;
 }
 
@@ -73,6 +74,22 @@
         [arr addObject:elementsInRow];
     }
     imagesArray = [arr copy];
+}
+
+- (void)setBordersForImageView: (UIImageView *)imageView
+{
+    UIColor *borderColor = [UIColor blackColor];
+    [imageView.layer setBorderColor:borderColor.CGColor];
+    [imageView.layer setBorderWidth:1.0];
+}
+
+- (void)prepareImagesForGame
+{
+    for (int i = 0; i < rowsCount; i++) {
+        for (int j = 0; j < columnsCount; j++) {
+            [self setBordersForImageView:imagesArray[i][j]];
+        }
+    }
 }
 
 - (void)loadImages
@@ -113,5 +130,10 @@
     // Makes zoom out animation smooth and starting from the right point not from (0, 0)
     [self.view layoutIfNeeded];
 }
+
+- (IBAction)startGamePressed:(id)sender {
+    [self prepareImagesForGame];
+}
+
 
 @end

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-HW_SlicedImages-MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HW_SlicedImages-SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5A8DA6B34FE106F7ECB7FCF2</key>
+		<key>26BDC59C4679A3640F84CA1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8AE7ABD03F4E799B67D07872</key>
+		<key>59B6C9EC2474154462E242C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72F301FB8C04C0D1D07AF95D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
