@@ -133,6 +133,7 @@
 
 - (IBAction)startGamePressed:(id)sender {
     [self prepareImagesForGame];
+    
 }
 
 
