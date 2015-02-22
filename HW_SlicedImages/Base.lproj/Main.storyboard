@@ -68,14 +68,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="muq-CL-lzv" firstAttribute="top" secondItem="iaT-p4-nhO" secondAttribute="bottom" id="JM0-kK-BXR"/>
-                            <constraint firstItem="iaT-p4-nhO" firstAttribute="leading" secondItem="QjW-Ua-PrN" secondAttribute="leading" id="RiH-N0-0Pi"/>
-                            <constraint firstAttribute="trailing" secondItem="iaT-p4-nhO" secondAttribute="trailing" id="jxM-BC-mcz"/>
-                            <constraint firstItem="iaT-p4-nhO" firstAttribute="top" secondItem="QjW-Ua-PrN" secondAttribute="top" id="qJE-aX-0Ls"/>
+                            <constraint firstAttribute="trailing" secondItem="iaT-p4-nhO" secondAttribute="trailing" id="Dh4-jM-uIm"/>
+                            <constraint firstItem="muq-CL-lzv" firstAttribute="top" secondItem="iaT-p4-nhO" secondAttribute="bottom" id="HBT-Sf-7wy"/>
+                            <constraint firstItem="iaT-p4-nhO" firstAttribute="top" secondItem="QjW-Ua-PrN" secondAttribute="top" id="Tvi-ZW-eI1"/>
+                            <constraint firstItem="iaT-p4-nhO" firstAttribute="leading" secondItem="QjW-Ua-PrN" secondAttribute="leading" id="ZbU-Qh-BaT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hbw-9R-rzt"/>
                     <connections>
+                        <outlet property="constraintBottom" destination="0Mn-H1-wOx" id="F3o-PD-HCX"/>
+                        <outlet property="constraintLeft" destination="M9u-tH-iHk" id="HiY-5n-CpG"/>
+                        <outlet property="constraintRight" destination="ibl-jn-ngW" id="EkX-ub-iV9"/>
+                        <outlet property="constraintTop" destination="uLf-f6-Axy" id="Iky-GJ-rbw"/>
                         <outlet property="heightOfView" destination="NLH-Nb-PgF" id="LBt-nI-Yuv"/>
                         <outlet property="mainView" destination="8zl-hw-pIQ" id="6m7-A3-z8M"/>
                         <outlet property="scrollView" destination="iaT-p4-nhO" id="FFI-ZB-GVO"/>

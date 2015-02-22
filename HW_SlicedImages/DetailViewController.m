@@ -21,6 +21,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *widthOfView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightOfView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintLeft;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintRight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
+
 
 @end
 
@@ -35,7 +40,7 @@
     [self loadImages];
     
     self.scrollView.delegate = self;
-    self.scrollView.minimumZoomScale=0.5;
+    self.scrollView.minimumZoomScale=0.2;
     self.scrollView.maximumZoomScale=6.0;
 }
 
@@ -87,14 +92,26 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
-    UIView *subView = [scrollView.subviews objectAtIndex:0];
+    float imageWidth = self.mainView.frame.size.width;
+    float imageHeight = self.mainView.frame.size.height;
     
-    CGFloat offsetX = MAX((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0);
-    CGFloat offsetY = MAX((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0);
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height - 20;
     
-    subView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
-                                 scrollView.contentSize.height * 0.5 + offsetY);
+    // center image if it is smaller than screen
+    float hPadding = (viewWidth - imageWidth) / 2.0;
+    if (hPadding < 0) hPadding = 0;
     
+    float vPadding = (viewHeight - imageHeight) / 2.0;
+    if (vPadding < 0) vPadding = 0;
+    
+    self.constraintLeft.constant = hPadding;
+    self.constraintRight.constant = hPadding;
+    self.constraintTop.constant = vPadding;
+    self.constraintBottom.constant = vPadding;
+    
+    // Makes zoom out animation smooth and starting from the right point not from (0, 0)
+    [self.view layoutIfNeeded];
 }
 
 @end
