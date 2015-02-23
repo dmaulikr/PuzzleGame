@@ -9,7 +9,6 @@
 #import "Game.h"
 #import "NetManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <AFNetworking/AFHTTPRequestOperation.h>
 
 @interface Game () {
     GameProperties *properties;
@@ -36,54 +35,24 @@ typedef enum int16_t {
     return _game;
 }
 
-- (void)loadData
+- (void)getTitlesOfImages: (void(^)(NSArray *))completion
 {
-    NSURL *url = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/ListImages.json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
-//            self.imagesArray = (NSArray *)responseObject;
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        self.imagesArray = nil;
-    }];
-    [operation start];
-    
-//    manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/ListImages.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            self.imagesArray = responseObject;
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        self.imagesArray = nil;
-//    }];
-}
-
-- (NSArray *)getTitlesOfImages
-{
-    [self loadData];
-    NSMutableArray *titles;
-    if (self.imagesArray) {
-        titles = [NSMutableArray new];
-        for (NSDictionary *dict in self.imagesArray) {
-            [titles addObject:dict[@"folder_name"]];
+    [[NetManager sharedInstance] getTitles:^(NSArray *arr, NSError *error) {
+        if (!error) {
+            self.imagesArray = arr;
+            NSMutableArray *titles = [NSMutableArray new];
+            for (NSDictionary *dict in self.imagesArray) {
+                [titles addObject:dict[@"folder_name"]];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(titles);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(nil);
+            });
         }
-    }
-    return titles;
-    
-    
-//    [[NetManager sharedInstance] getTitles:^(NSArray *arr, NSError *error) {
-//        if (!error) {
-//            self.imagesArray = arr;
-//            for (NSDictionary *dict in arr) {
-//                [titles addObject:dict[@"folder_name"]];
-//            }
-//        } else {
-//            self.imagesArray = nil;
-//        }
-//    }];
-//    if (titles.count > 1) return titles; else return nil;
+    }];
 }
 
 - (GameProperties *)getGameProperties
