@@ -16,7 +16,7 @@
 
 + (instancetype)sharedInstance;
 
-- (NSArray *)getTitlesOfImages;
+- (void)getTitlesOfImages: (void(^)(NSArray *))completion;
 - (void)setupGameWithImageNamed: (NSString *)name;
 - (GameProperties *)getGameProperties;
 - (void)createArrayWithEmptyImages;
