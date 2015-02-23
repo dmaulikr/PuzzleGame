@@ -11,7 +11,6 @@
 #import "DetailViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Game.h"
-#import <AFNetworking/AFHTTPRequestOperation.h>
 
 @interface TableViewController () {
     NSArray *titles;
@@ -33,43 +32,24 @@
     [self reloadIfNescessary];
 }
 
-- (void)loadFromNet
-{
-    NSURL *url = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/ListImages.json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
-        [self.tableView reloadData];
-        //            self.imagesArray = (NSArray *)responseObject;
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
-    [operation start];
-}
-
 - (void)loadData
 {
-//    titles = [[Game sharedInstance] getTitlesOfImages];
-//    [self.tableView reloadData];
-    [self loadFromNet];
-    [self.refreshControl endRefreshing];
-    if (!titles) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.detailsLabelText = @"Please check internet connection";
-        [hud hide:YES afterDelay:1.5];
-    }
-    [self.tableView reloadData];
+    [[Game sharedInstance] getTitlesOfImages:^(NSArray *arr) {
+        titles = arr;
+        [self.refreshControl endRefreshing];
+        if (!titles) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.detailsLabelText = @"Please check internet connection";
+            [hud hide:YES afterDelay:1.5];
+        }
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)reloadIfNescessary
 {
     [self.refreshControl beginRefreshing];
-//    [self loadData];
-    [self loadFromNet];
+    [self loadData];
 }
 
 #pragma mark - Table view data source
