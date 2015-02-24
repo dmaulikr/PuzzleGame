@@ -62,6 +62,8 @@
     }
 }
 
+
+
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.mainView;
@@ -91,9 +93,20 @@
     [self.view layoutIfNeeded];
 }
 
-- (IBAction)startGamePressed:(UIButton *)sender {
-    
-    
+- (IBAction)startGamePressed:(UIButton *)sender
+{
+    [[Game sharedInstance] setupBordersForAllImages];
+    [UIView animateWithDuration:5.0 animations:^{
+        [[Game sharedInstance] startHidingImages];
+    }];
+//    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionLayoutSubviews animations:^{
+//        [[Game sharedInstance] startHidingImages];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+//    [UIView animateWithDuration:5.0 animations:^{
+//        [[Game sharedInstance] startHidingImages];
+//    }];
 }
 
 

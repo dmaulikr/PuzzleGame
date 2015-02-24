@@ -19,6 +19,7 @@
 		B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E72E41A9A497900820AB6 /* GameProperties.m */; };
 		B2A79AA21A94E4380062FAFF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA11A94E4380062FAFF /* TableViewController.m */; };
 		B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA41A94E7A50062FAFF /* NetManager.m */; };
+		B2CFCC3C1A9BB614007EE4DE /* GamePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		B2A79AA11A94E4380062FAFF /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		B2A79AA31A94E7A50062FAFF /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
 		B2A79AA41A94E7A50062FAFF /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		B2CFCC3A1A9BB614007EE4DE /* GamePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePoint.h; sourceTree = "<group>"; };
+		B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 				B27E72DE1A9A46B700820AB6 /* Game.m */,
 				B27E72E31A9A497900820AB6 /* GameProperties.h */,
 				B27E72E41A9A497900820AB6 /* GameProperties.m */,
+				B2CFCC3A1A9BB614007EE4DE /* GamePoint.h */,
+				B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			files = (
 				B26C3CB91A96622D00E71C05 /* DetailViewController.m in Sources */,
 				B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */,
+				B2CFCC3C1A9BB614007EE4DE /* GamePoint.m in Sources */,
 				A80A469D1A8F2409001442C8 /* AppDelegate.m in Sources */,
 				B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */,
 				B27E72DF1A9A46B700820AB6 /* Game.m in Sources */,

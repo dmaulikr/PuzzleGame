@@ -7,7 +7,6 @@
 //
 
 #import "TableViewController.h"
-#import "NetManager.h"
 #import "DetailViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Game.h"

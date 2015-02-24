@@ -12,7 +12,7 @@
 @interface Game : NSObject
 
 @property (nonatomic, strong) NSArray *imagesArray;
-@property (nonatomic, strong) NSArray *titlesArray;
+//@property (nonatomic, strong) NSArray *titlesArray;
 
 + (instancetype)sharedInstance;
 
@@ -21,5 +21,7 @@
 - (GameProperties *)getGameProperties;
 - (void)createArrayWithEmptyImages;
 - (void)completeArrayWithImages;
+- (void)setupBordersForAllImages;
+- (void)startHidingImages;
 
 @end
