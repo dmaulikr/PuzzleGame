@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameProperties.h"
+#import "GamePoint.h"
 
 @interface Game : NSObject
 
@@ -23,5 +24,6 @@
 - (void)completeArrayWithImages;
 - (void)setupBordersForAllImages;
 - (void)startHidingImages;
+- (GamePoint *)getGamePointFromCGPoint: (CGPoint)point;
 
 @end

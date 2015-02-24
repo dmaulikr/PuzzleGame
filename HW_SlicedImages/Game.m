@@ -9,13 +9,13 @@
 #import "Game.h"
 #import "NetManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "GamePoint.h"
 
 @interface Game () {
     GameProperties *properties;
     GamePoint *startPoint;
     NSArray *copyOfImagesArray;
     int stepsCount;
+    NSMutableArray *generatedPathOfPoints;
 }
 
 typedef enum int16_t {
@@ -118,31 +118,68 @@ typedef enum int16_t {
     }
 }
 
-- (void)startHidingImages
+- (void)animateImages
 {
-    UIImageView *startImage = self.imagesArray[startPoint.y][startPoint.x];
-    startImage.alpha = 0;
-    GamePoint *currentPoint = startPoint;
-    for (int k = stepsCount; k > 0; k--) {
-        [UIView animateWithDuration:10.0 delay:0.5 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            NSArray *points = [self getAvailiablePointsFromCurrent:currentPoint];
-            GamePoint *selectedPoint = points[arc4random_uniform((int)points.count)];
-            [self swapFirstImage:self.imagesArray[selectedPoint.y][selectedPoint.x] WithSecond:self.imagesArray[currentPoint.y][currentPoint.x]];
-        } completion:^(BOOL finished) {
-            
-        }];
-//        NSArray *points = [self getAvailiablePointsFromCurrent:currentPoint];
-//        GamePoint *selectedPoint = points[arc4random_uniform((int)points.count)];
-//        [self swapFirstImage:self.imagesArray[selectedPoint.y][selectedPoint.x] WithSecond:self.imagesArray[currentPoint.y][currentPoint.x]];
-    }
+    if (generatedPathOfPoints.count == 1) return;
+    [UIView animateWithDuration:0.1 animations:^{
+        GamePoint *previousPoint = [generatedPathOfPoints firstObject];
+        [generatedPathOfPoints removeObjectAtIndex:0];
+        GamePoint *currentPoint = [generatedPathOfPoints firstObject];
+        UIImageView *previousImage = self.imagesArray[previousPoint.y][previousPoint.x];
+        UIImageView *currentImage = self.imagesArray[currentPoint.y][currentPoint.x];
+        [self swapSomeImage:previousImage AnotherImageWithAnimation:currentImage];
+    } completion:^(BOOL finished) {
+        [self animateImages];
+    }];
 }
 
-- (void)swapFirstImage: (UIImageView *)first WithSecond: (UIImageView *)second
+- (void)startHidingImages
 {
+    generatedPathOfPoints = [NSMutableArray new];
+    [generatedPathOfPoints addObject:startPoint];
+    [UIView animateWithDuration:0.1 animations:^{
+        UIImageView *startImage = self.imagesArray[startPoint.y][startPoint.x];
+        startImage.alpha = 0;
+    } completion:^(BOOL finished) {
+        GamePoint *currentPoint = startPoint;
+        GamePoint *previousPoint = nil;
+        GamePoint *selectedPoint;
+        for (int k = stepsCount - 1; k > 0; k--) {
+            NSArray *points = [self getAvailiablePointsFromCurrent:currentPoint];
+            selectedPoint = points[arc4random_uniform((int)points.count)];
+            if (previousPoint) {
+                while (selectedPoint.x == previousPoint.x && selectedPoint.y == previousPoint.y) {
+                    selectedPoint = points[arc4random_uniform((int)points.count)];
+                }
+            }
+            [generatedPathOfPoints addObject:selectedPoint];
+            previousPoint = currentPoint;
+            currentPoint = selectedPoint;
+        }
+        [self animateImages];
+    }];
+}
+
+- (void)swapSomeImage: (UIImageView *)someImage AnotherImageWithAnimation: (UIImageView *)anotherImage
+{
+    
     UIImageView *temp = [UIImageView new];
-    temp.image = first.image;
-    first.image = second.image;
-    second.image = temp.image;
+    temp.image = someImage.image;
+    someImage.image = anotherImage.image;
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [someImage.layer addAnimation:transition forKey:nil];
+    
+    anotherImage.image = temp.image;
+    
+    
+    [anotherImage.layer addAnimation:transition forKey:nil];
+    someImage.alpha = 1;
+    anotherImage.alpha = 0;
 }
 
 - (NSArray *)getAvailiablePointsFromCurrent: (GamePoint *)currentPoint
@@ -155,6 +192,14 @@ typedef enum int16_t {
     return points;
 }
 
+- (GamePoint *)getGamePointFromCGPoint: (CGPoint)point
+{
+    GamePoint *gamePoint = [GamePoint new];
+    gamePoint.y = (int)(point.y / properties.elemHieght);
+    gamePoint.x = (int)(point.x / properties.elemWidth);
+    return gamePoint;
+}
+
 #pragma mark Game settings
 
 - (void)setupGameWithImageNamed: (NSString *)name
@@ -162,6 +207,10 @@ typedef enum int16_t {
     properties = [[GameProperties alloc] initPropertiesWithImageNamed:name];
     [self generateStartPosition];
     stepsCount = arc4random_uniform(properties.rowsCount * properties.columnsCount - 1);
+    while (stepsCount < 4) {
+        stepsCount = arc4random_uniform(properties.rowsCount * properties.columnsCount - 1);
+    }
+    NSLog(@"steps: %d", stepsCount);
 }
 
 - (void)configureBordersForImageView: (UIImageView *)imageView

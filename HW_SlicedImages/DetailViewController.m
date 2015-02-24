@@ -43,6 +43,11 @@
         self.view.bounds.size.height / self.heightOfView.constant);
     self.scrollView.minimumZoomScale = (minZoom < 1) ? minZoom : 1;
     self.scrollView.maximumZoomScale=6.0;
+    
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
+
+    self.mainView.userInteractionEnabled = YES;
+    [self.mainView addGestureRecognizer:singleTapGestureRecognizer];
 }
 
 - (void)resizeMainView
@@ -93,20 +98,19 @@
     [self.view layoutIfNeeded];
 }
 
+-(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    CGPoint touchLocation = [tapGestureRecognizer locationInView:self.mainView];
+    GamePoint *gamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
+    NSLog(@"y: %d x: %d", gamePoint.y, gamePoint.x);
+}
+
 - (IBAction)startGamePressed:(UIButton *)sender
 {
     [[Game sharedInstance] setupBordersForAllImages];
-    [UIView animateWithDuration:5.0 animations:^{
-        [[Game sharedInstance] startHidingImages];
-    }];
-//    [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionLayoutSubviews animations:^{
-//        [[Game sharedInstance] startHidingImages];
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//    [UIView animateWithDuration:5.0 animations:^{
-//        [[Game sharedInstance] startHidingImages];
-//    }];
+    [[Game sharedInstance] startHidingImages];
+    
+    NSLog(@"Finished");
 }
 
 
