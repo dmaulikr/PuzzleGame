@@ -10,6 +10,7 @@
 #import "Game.h"
 #import "GameProperties.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface DetailViewController () <UIScrollViewDelegate> {
     GameProperties *properties;
@@ -100,15 +101,46 @@
 
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
 {
+    if ([[Game sharedInstance] checkForGameCompleated]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
+        hud.detailsLabelText = @"Completed";
+        [hud hide:YES afterDelay:0.5];
+        return;
+    }
     CGPoint touchLocation = [tapGestureRecognizer locationInView:self.mainView];
-    GamePoint *gamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
-    NSLog(@"y: %d x: %d", gamePoint.y, gamePoint.x);
+    GamePoint *touchInGamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
+    NSLog(@"y: %d x: %d", touchInGamePoint.y, touchInGamePoint.x);
+    properties = [[Game sharedInstance] getGameProperties];
+    NSLog(@"Empty point y:%d x:%d", properties.emptyPoint.y, properties.emptyPoint.x);
+    if (touchInGamePoint.y == properties.emptyPoint.y) {
+        if (touchInGamePoint.x < properties.emptyPoint.x) {
+            [[Game sharedInstance] moveImagesToRightFromX:touchInGamePoint.x];
+        }
+        if (touchInGamePoint.x > properties.emptyPoint.x) {
+            [[Game sharedInstance] moveImagesToLeftFromX:touchInGamePoint.x];
+        }
+    }
+    if (touchInGamePoint.x == properties.emptyPoint.x) {
+        if (touchInGamePoint.y < properties.emptyPoint.y) {
+            [[Game sharedInstance] moveImagesToBottomFromY:touchInGamePoint.y];
+        }
+        if (touchInGamePoint.y > properties.emptyPoint.y) {
+            [[Game sharedInstance] moveImagesToTopFromY:touchInGamePoint.y];
+        }
+    }
+    if ([[Game sharedInstance] checkForGameCompleated]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
+        hud.detailsLabelText = @"Completed";
+        [hud hide:YES afterDelay:0.5];
+        return;
+    }
 }
 
 - (IBAction)startGamePressed:(UIButton *)sender
 {
     [[Game sharedInstance] setupBordersForAllImages];
     [[Game sharedInstance] startHidingImages];
+    sender.userInteractionEnabled = NO;
     
     NSLog(@"Finished");
 }
