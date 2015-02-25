@@ -97,6 +97,7 @@
                         <outlet property="heightOfView" destination="NLH-Nb-PgF" id="LBt-nI-Yuv"/>
                         <outlet property="mainView" destination="8zl-hw-pIQ" id="6m7-A3-z8M"/>
                         <outlet property="scrollView" destination="iaT-p4-nhO" id="FFI-ZB-GVO"/>
+                        <outlet property="startButton" destination="PgT-Nr-iGm" id="nm0-4o-4B0"/>
                         <outlet property="widthOfView" destination="BW4-yr-8oO" id="JOn-35-k7U"/>
                     </connections>
                 </viewController>

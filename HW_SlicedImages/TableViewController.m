@@ -38,6 +38,7 @@
         [self.refreshControl endRefreshing];
         if (!titles) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
             hud.detailsLabelText = @"Please check internet connection";
             [hud hide:YES afterDelay:1.5];
         }
@@ -74,7 +75,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-//    DetailViewController *detail = segue.destinationViewController;
     [[Game sharedInstance] setupGameWithImageNamed:titles[indexPath.row]];
 }
 

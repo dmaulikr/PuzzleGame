@@ -14,6 +14,6 @@
 @property (nonatomic) int y;
 
 - (GamePoint *)initWithX: (int)x
-                   Y: (int)y;
+                       Y: (int)y;
 
 @end

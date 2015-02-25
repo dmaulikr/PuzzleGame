@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintRight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintBottom;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @end
 
@@ -37,7 +38,7 @@
     [self resizeMainView];
     [self addArrayWithEmptyImagesOnMainView];
     [[Game sharedInstance] completeArrayWithImages];
-
+    [self.startButton setUserInteractionEnabled: YES];
     
     self.scrollView.delegate = self;
     float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
@@ -101,18 +102,10 @@
 
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-//    if ([[Game sharedInstance] checkForGameCompleated]) {
-//        [[Game sharedInstance] showHiddenImage];
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
-//        hud.detailsLabelText = @"Completed";
-//        [hud hide:YES afterDelay:1.0];
-//        return;
-//    }
     CGPoint touchLocation = [tapGestureRecognizer locationInView:self.mainView];
     GamePoint *touchInGamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
-    NSLog(@"y: %d x: %d", touchInGamePoint.y, touchInGamePoint.x);
     properties = [[Game sharedInstance] getGameProperties];
-    NSLog(@"Empty point y:%d x:%d", properties.emptyPoint.y, properties.emptyPoint.x);
+
     if (touchInGamePoint.y == properties.emptyPoint.y) {
         if (touchInGamePoint.x < properties.emptyPoint.x) {
             [[Game sharedInstance] moveImagesToRightFromX:touchInGamePoint.x];
@@ -136,9 +129,10 @@
             [[Game sharedInstance] setupBordersForAllImagesEnabled:NO];
             dispatch_async(dispatch_get_main_queue(), ^{
                 MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
+                hud.mode = MBProgressHUDModeText;
                 hud.labelText = @"Compleated";
-//                hud.detailsLabelText = @"Completed";
                 [hud hide:YES afterDelay:1.0];
+                [self.startButton setUserInteractionEnabled:YES];
             });
             
         }];
@@ -149,9 +143,7 @@
 {
     [[Game sharedInstance] setupBordersForAllImagesEnabled:YES];
     [[Game sharedInstance] startHidingImages];
-    sender.userInteractionEnabled = NO;
-    
-    NSLog(@"Finished");
+    [self.startButton setUserInteractionEnabled: NO];
 }
 
 

@@ -11,7 +11,7 @@
 @implementation GamePoint
 
 - (GamePoint *)initWithX: (int)x
-                   Y: (int)y
+                       Y: (int)y
 {
     GamePoint *point = [GamePoint new];
     point.x = x;

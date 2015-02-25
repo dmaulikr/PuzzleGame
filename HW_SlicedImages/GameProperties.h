@@ -20,10 +20,6 @@
 @property (nonatomic, strong) NSString *imageName;
 @property (nonatomic) GamePoint *emptyPoint;
 
-//- (GameProperties *)initWithRows: (CGFloat)rows
-//                         Columns: (CGFloat)columns
-//                   ElementHeight: (CGFloat)height
-//                           Width: (CGFloat)width;
 - (GameProperties *)initPropertiesWithImageNamed: (NSString *)imageName;
 
 @end

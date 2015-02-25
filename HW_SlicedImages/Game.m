@@ -67,6 +67,7 @@ typedef enum int16_t {
     return properties;
 }
 
+//also fill imagesCopyArray
 - (void)createArrayWithEmptyImages
 {
     NSMutableArray *arr = [NSMutableArray new];
@@ -94,11 +95,8 @@ typedef enum int16_t {
         for (int j = 0; j < properties.columnsCount; j++) {
             NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/%@/%d_%d.png", properties.imageName, i, j]];
             [self.imagesArray[i][j] sd_setImageWithURL:imageURL];
-//            [self.imagesCopyArray[i][j] sd_setImageWithURL:imageURL];
         }
     }
-//    copyOfImagesArray = self.imagesArray;
-//    [self makeCopyOfImages];
 }
 
 - (void)makeCopyOfImages
@@ -112,39 +110,62 @@ typedef enum int16_t {
     }
 }
 
-- (void)generateStartPosition
-{
-    StartBorder startBorder = (StartBorder)arc4random_uniform(3);
-    int positionInBorder;
-    switch (startBorder) {
-        case StartBorderLeft: {
-            positionInBorder = arc4random_uniform(properties.rowsCount - 1);
-            startPoint = [[GamePoint alloc] initWithX:0 Y:positionInBorder];
-            break;
-        }
-        case StartBorderRight: {
-            positionInBorder = arc4random_uniform(properties.rowsCount - 1);
-            startPoint = [[GamePoint alloc] initWithX:properties.columnsCount - 1 Y:positionInBorder];
-            break;
-        }
-        case StartBorderTop: {
-            positionInBorder = arc4random_uniform(properties.columnsCount - 1);
-            startPoint = [[GamePoint alloc] initWithX:positionInBorder Y:0];
-            break;
-        }
-        case StartBorderBottom: {
-            positionInBorder = arc4random_uniform(properties.columnsCount - 1);
-            startPoint = [[GamePoint alloc] initWithX:positionInBorder Y:properties.rowsCount - 1];
-            break;
-        }
-    }
-}
-
 - (void)showHiddenImage
 {
     UIImageView *image = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
     image.alpha = 1;
 }
+
+- (void)swapSomeImage: (UIImageView *)someImage AnotherImageWithAnimation: (UIImageView *)anotherImage
+{
+    
+    UIImageView *temp = [UIImageView new];
+    temp.image = someImage.image;
+    someImage.image = anotherImage.image;
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.1f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [someImage.layer addAnimation:transition forKey:nil];
+    
+    anotherImage.image = temp.image;
+    
+    
+    [anotherImage.layer addAnimation:transition forKey:nil];
+    someImage.alpha = 1;
+    anotherImage.alpha = 0.0;
+}
+
+#pragma mark Point Calculations
+
+- (NSArray *)getAvailiablePointsFromCurrent: (GamePoint *)currentPoint
+{
+    NSMutableArray *points = [NSMutableArray new];
+    if (currentPoint.x - 1 >= 0) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x - 1 Y:currentPoint.y]];
+    if (currentPoint.y - 1 >= 0) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x Y:currentPoint.y - 1]];
+    if (currentPoint.x + 1 < properties.columnsCount) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x + 1 Y:currentPoint.y]];
+    if (currentPoint.y + 1 < properties.rowsCount) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x Y:currentPoint.y + 1]];
+    return points;
+}
+
+- (GamePoint *)getGamePointFromCGPoint: (CGPoint)point
+{
+    GamePoint *gamePoint = [GamePoint new];
+    gamePoint.y = (int)(point.y / properties.elemHieght);
+    gamePoint.x = (int)(point.x / properties.elemWidth);
+    return gamePoint;
+}
+
+- (CGPoint)getCGPointFromGamePoint: (GamePoint *)gamePoint
+{
+    int x = gamePoint.x * properties.elemWidth;
+    int y = gamePoint.y * properties.elemHieght;
+    return CGPointMake((float)x, (float)y);
+}
+
+#pragma mark Images Animation
 
 - (void)animateImages
 {
@@ -187,54 +208,6 @@ typedef enum int16_t {
         properties.emptyPoint = [generatedPathOfPoints lastObject];
         [self animateImages];
     }];
-    NSLog(@"Hiden image position y:%f x:%f", hiddenImage.frame.origin.y, hiddenImage.frame.origin.x);
-}
-
-- (void)swapSomeImage: (UIImageView *)someImage AnotherImageWithAnimation: (UIImageView *)anotherImage
-{
-    
-    UIImageView *temp = [UIImageView new];
-    temp.image = someImage.image;
-    someImage.image = anotherImage.image;
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.1f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-    
-    [someImage.layer addAnimation:transition forKey:nil];
-    
-    anotherImage.image = temp.image;
-    
-    
-    [anotherImage.layer addAnimation:transition forKey:nil];
-    someImage.alpha = 1;
-    anotherImage.alpha = 0.0;
-}
-
-- (NSArray *)getAvailiablePointsFromCurrent: (GamePoint *)currentPoint
-{
-    NSMutableArray *points = [NSMutableArray new];
-    if (currentPoint.x - 1 >= 0) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x - 1 Y:currentPoint.y]];
-    if (currentPoint.y - 1 >= 0) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x Y:currentPoint.y - 1]];
-    if (currentPoint.x + 1 < properties.columnsCount) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x + 1 Y:currentPoint.y]];
-    if (currentPoint.y + 1 < properties.rowsCount) [points addObject:[[GamePoint alloc] initWithX:currentPoint.x Y:currentPoint.y + 1]];
-    return points;
-}
-
-- (GamePoint *)getGamePointFromCGPoint: (CGPoint)point
-{
-    GamePoint *gamePoint = [GamePoint new];
-    gamePoint.y = (int)(point.y / properties.elemHieght);
-    gamePoint.x = (int)(point.x / properties.elemWidth);
-    return gamePoint;
-}
-
-- (CGPoint)getCGPointFromGamePoint: (GamePoint *)gamePoint
-{
-    int x = gamePoint.x * properties.elemWidth;
-    int y = gamePoint.y * properties.elemHieght;
-    return CGPointMake((float)x, (float)y);
 }
 
 #pragma mark Check
@@ -343,7 +316,7 @@ typedef enum int16_t {
     properties.emptyPoint.y = fromY;
 }
 
-#pragma mark Game settings
+#pragma mark Game Settings
 
 - (void)setupGameWithImageNamed: (NSString *)name
 {
@@ -353,7 +326,6 @@ typedef enum int16_t {
     while (stepsCount < 4) {
         stepsCount = arc4random_uniform(properties.rowsCount * properties.columnsCount - 1);
     }
-    NSLog(@"steps: %d", stepsCount);
 }
 
 - (void)configureBordersForImageView: (UIImageView *)imageView
@@ -375,5 +347,32 @@ typedef enum int16_t {
     [self makeCopyOfImages];
 }
 
+- (void)generateStartPosition
+{
+    StartBorder startBorder = (StartBorder)arc4random_uniform(3);
+    int positionInBorder;
+    switch (startBorder) {
+        case StartBorderLeft: {
+            positionInBorder = arc4random_uniform(properties.rowsCount - 1);
+            startPoint = [[GamePoint alloc] initWithX:0 Y:positionInBorder];
+            break;
+        }
+        case StartBorderRight: {
+            positionInBorder = arc4random_uniform(properties.rowsCount - 1);
+            startPoint = [[GamePoint alloc] initWithX:properties.columnsCount - 1 Y:positionInBorder];
+            break;
+        }
+        case StartBorderTop: {
+            positionInBorder = arc4random_uniform(properties.columnsCount - 1);
+            startPoint = [[GamePoint alloc] initWithX:positionInBorder Y:0];
+            break;
+        }
+        case StartBorderBottom: {
+            positionInBorder = arc4random_uniform(properties.columnsCount - 1);
+            startPoint = [[GamePoint alloc] initWithX:positionInBorder Y:properties.rowsCount - 1];
+            break;
+        }
+    }
+}
 
 @end
