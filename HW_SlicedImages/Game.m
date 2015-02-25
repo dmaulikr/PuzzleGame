@@ -13,7 +13,7 @@
 @interface Game () {
     GameProperties *properties;
     GamePoint *startPoint;
-    NSArray *copyOfImagesArray;
+//    __strong NSArray *copyOfImagesArray;
     int stepsCount;
     NSMutableArray *generatedPathOfPoints;
 }
@@ -24,6 +24,8 @@ typedef enum int16_t {
     StartBorderTop,
     StartBorderBottom
 }StartBorder;
+
+@property (nonatomic, strong) NSArray *imagesCopyArray;
 
 @end
 
@@ -77,6 +79,7 @@ typedef enum int16_t {
         [arr addObject:elementsInRow];
     }
     self.imagesArray = [arr copy];
+//    self.imagesCopyArray = [arr copy];
 }
 
 - (void)completeArrayWithImages
@@ -85,9 +88,22 @@ typedef enum int16_t {
         for (int j = 0; j < properties.columnsCount; j++) {
             NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://dl.dropboxusercontent.com/u/55523423/NetExample/%@/%d_%d.png", properties.imageName, i, j]];
             [self.imagesArray[i][j] sd_setImageWithURL:imageURL];
+//            [self.imagesCopyArray[i][j] sd_setImageWithURL:imageURL];
         }
     }
-    copyOfImagesArray = self.imagesArray;
+//    copyOfImagesArray = self.imagesArray;
+//    [self makeCopyOfImages];
+}
+
+- (void)makeCopyOfImages
+{
+    for (int i = 0; i < properties.rowsCount; i++) {
+        for (int j = 0; j < properties.columnsCount; j++) {
+            UIImageView *imgView = self.imagesArray[i][j];
+            UIImageView *imageView = self.imagesCopyArray[i][j];
+            imageView.image = imgView.image;
+        }
+    }
 }
 
 - (void)generateStartPosition
@@ -156,6 +172,7 @@ typedef enum int16_t {
             previousPoint = currentPoint;
             currentPoint = selectedPoint;
         }
+        properties.emptyPoint = [generatedPathOfPoints lastObject];
         [self animateImages];
     }];
 }
@@ -200,6 +217,89 @@ typedef enum int16_t {
     return gamePoint;
 }
 
+- (CGPoint)getCGPointFromGamePoint: (GamePoint *)gamePoint
+{
+    int x = gamePoint.x * properties.elemWidth;
+    int y = gamePoint.y * properties.elemHieght;
+    return CGPointMake((float)x, (float)y);
+}
+
+#pragma mark Check
+
+- (BOOL)checkForGameCompleated
+{
+    for (int i = 0; i < properties.rowsCount; i++) {
+        for (int j = 0; j < properties.columnsCount; j++) {
+            UIImageView *first = self.imagesArray[i][j];
+            UIImageView *second = self.imagesCopyArray[i][j];
+            if (first.image != second.image) return NO;
+        }
+    }
+    return YES;
+}
+
+#pragma mark Moving
+
+- (void)moveImagesToRightFromX: (int)fromX
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        for (int i = properties.emptyPoint.x - 1; i >= fromX; i--) {
+            GamePoint *destinationPoint = [[GamePoint alloc] initWithX:i + 1 Y:properties.emptyPoint.y];
+            CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+            UIImageView *currentView = self.imagesArray[properties.emptyPoint.y][i];
+            CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+            [currentView setFrame:frame];
+            self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[destinationPoint.y][i];
+        }
+    }];
+    properties.emptyPoint.x = fromX;
+}
+
+- (void)moveImagesToLeftFromX: (int)fromX
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        for (int i = properties.emptyPoint.x + 1; i <= fromX; i++) {
+            GamePoint *destinationPoint = [[GamePoint alloc] initWithX:i - 1 Y:properties.emptyPoint.y];
+            CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+            UIImageView *currentView = self.imagesArray[properties.emptyPoint.y][i];
+            CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+            [currentView setFrame:frame];
+            self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[destinationPoint.y][i];
+        }
+    }];
+    properties.emptyPoint.x = fromX;
+}
+
+- (void)moveImagesToTopFromY: (int)fromY
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        for (int j = properties.emptyPoint.y + 1; j <= fromY; j++) {
+            GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:j - 1];
+            CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+            UIImageView *currentView = self.imagesArray[j][properties.emptyPoint.x];
+            CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+            [currentView setFrame:frame];
+            self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[j][destinationPoint.x];
+        }
+    }];
+    properties.emptyPoint.y = fromY;
+}
+
+- (void)moveImagesToBottomFromY: (int)fromY
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        for (int j = properties.emptyPoint.y - 1; j >= fromY; j--) {
+            GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:j + 1];
+            CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+            UIImageView *currentView = self.imagesArray[j][properties.emptyPoint.x];
+            CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+            [currentView setFrame:frame];
+            self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[j][destinationPoint.x];
+        }
+    }];
+    properties.emptyPoint.y = fromY;
+}
+
 #pragma mark Game settings
 
 - (void)setupGameWithImageNamed: (NSString *)name
@@ -227,6 +327,7 @@ typedef enum int16_t {
             [self configureBordersForImageView:self.imagesArray[i][j]];
         }
     }
+    [self makeCopyOfImages];
 }
 
 
