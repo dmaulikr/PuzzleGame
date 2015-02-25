@@ -26,4 +26,11 @@
 - (void)startHidingImages;
 - (GamePoint *)getGamePointFromCGPoint: (CGPoint)point;
 
+- (void)moveImagesToLeftFromX: (int)fromX;
+- (void)moveImagesToRightFromX: (int)fromX;
+- (void)moveImagesToTopFromY: (int)fromY;
+- (void)moveImagesToBottomFromY: (int)fromY;
+
+- (BOOL)checkForGameCompleated;
+
 @end
