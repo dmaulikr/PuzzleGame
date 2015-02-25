@@ -43,7 +43,7 @@
     float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
         self.view.bounds.size.height / self.heightOfView.constant);
     self.scrollView.minimumZoomScale = (minZoom < 1) ? minZoom : 1;
-    self.scrollView.maximumZoomScale=6.0;
+    self.scrollView.maximumZoomScale = 6.0;
     
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
 
@@ -101,12 +101,13 @@
 
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    if ([[Game sharedInstance] checkForGameCompleated]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
-        hud.detailsLabelText = @"Completed";
-        [hud hide:YES afterDelay:0.5];
-        return;
-    }
+//    if ([[Game sharedInstance] checkForGameCompleated]) {
+//        [[Game sharedInstance] showHiddenImage];
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
+//        hud.detailsLabelText = @"Completed";
+//        [hud hide:YES afterDelay:1.0];
+//        return;
+//    }
     CGPoint touchLocation = [tapGestureRecognizer locationInView:self.mainView];
     GamePoint *touchInGamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
     NSLog(@"y: %d x: %d", touchInGamePoint.y, touchInGamePoint.x);
@@ -129,16 +130,24 @@
         }
     }
     if ([[Game sharedInstance] checkForGameCompleated]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
-        hud.detailsLabelText = @"Completed";
-        [hud hide:YES afterDelay:0.5];
-        return;
+        [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [[Game sharedInstance] showHiddenImage];
+        } completion:^(BOOL finished) {
+            [[Game sharedInstance] setupBordersForAllImagesEnabled:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
+                hud.labelText = @"Compleated";
+//                hud.detailsLabelText = @"Completed";
+                [hud hide:YES afterDelay:1.0];
+            });
+            
+        }];
     }
 }
 
 - (IBAction)startGamePressed:(UIButton *)sender
 {
-    [[Game sharedInstance] setupBordersForAllImages];
+    [[Game sharedInstance] setupBordersForAllImagesEnabled:YES];
     [[Game sharedInstance] startHidingImages];
     sender.userInteractionEnabled = NO;
     

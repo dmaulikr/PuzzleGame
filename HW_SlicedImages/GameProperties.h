@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class GamePoint;
+
 @interface GameProperties : NSObject
 
 @property (nonatomic, assign) CGFloat rowsCount;
@@ -16,6 +18,7 @@
 @property (nonatomic, assign) CGFloat elemWidth;
 @property (nonatomic, assign) CGFloat elemHieght;
 @property (nonatomic, strong) NSString *imageName;
+@property (nonatomic) GamePoint *emptyPoint;
 
 //- (GameProperties *)initWithRows: (CGFloat)rows
 //                         Columns: (CGFloat)columns

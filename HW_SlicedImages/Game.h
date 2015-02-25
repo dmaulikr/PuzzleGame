@@ -22,7 +22,7 @@
 - (GameProperties *)getGameProperties;
 - (void)createArrayWithEmptyImages;
 - (void)completeArrayWithImages;
-- (void)setupBordersForAllImages;
+- (void)setupBordersForAllImagesEnabled: (BOOL)enabled;
 - (void)startHidingImages;
 - (GamePoint *)getGamePointFromCGPoint: (CGPoint)point;
 
@@ -31,6 +31,9 @@
 - (void)moveImagesToTopFromY: (int)fromY;
 - (void)moveImagesToBottomFromY: (int)fromY;
 
+- (void)showHiddenImage;
+
 - (BOOL)checkForGameCompleated;
+
 
 @end

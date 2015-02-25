@@ -13,6 +13,7 @@
 @interface Game () {
     GameProperties *properties;
     GamePoint *startPoint;
+    UIImageView *hiddenImage;
 //    __strong NSArray *copyOfImagesArray;
     int stepsCount;
     NSMutableArray *generatedPathOfPoints;
@@ -69,17 +70,22 @@ typedef enum int16_t {
 - (void)createArrayWithEmptyImages
 {
     NSMutableArray *arr = [NSMutableArray new];
+    NSMutableArray *arrCopy = [NSMutableArray new];
     for (int i = 0; i < properties.rowsCount; i++) {
         NSMutableArray *elementsInRow = [NSMutableArray new];
+        NSMutableArray *elementsInRowCopy = [NSMutableArray new];
         for (int j = 0; j < properties.columnsCount; j++) {
             CGRect frame = CGRectMake(j * properties.elemWidth, i * properties.elemHieght, properties.elemWidth, properties.elemHieght);
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:frame];
+            UIImageView *imgViewCopy = [[UIImageView alloc] initWithFrame:frame];
+            [elementsInRowCopy addObject:imgViewCopy];
             [elementsInRow addObject:imgView];
         }
         [arr addObject:elementsInRow];
+        [arrCopy addObject:elementsInRowCopy];
     }
     self.imagesArray = [arr copy];
-//    self.imagesCopyArray = [arr copy];
+    self.imagesCopyArray = [arrCopy copy];
 }
 
 - (void)completeArrayWithImages
@@ -134,6 +140,12 @@ typedef enum int16_t {
     }
 }
 
+- (void)showHiddenImage
+{
+    UIImageView *image = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
+    image.alpha = 1;
+}
+
 - (void)animateImages
 {
     if (generatedPathOfPoints.count == 1) return;
@@ -154,8 +166,8 @@ typedef enum int16_t {
     generatedPathOfPoints = [NSMutableArray new];
     [generatedPathOfPoints addObject:startPoint];
     [UIView animateWithDuration:0.1 animations:^{
-        UIImageView *startImage = self.imagesArray[startPoint.y][startPoint.x];
-        startImage.alpha = 0;
+        hiddenImage = self.imagesArray[startPoint.y][startPoint.x];
+        hiddenImage.alpha = 0.0;
     } completion:^(BOOL finished) {
         GamePoint *currentPoint = startPoint;
         GamePoint *previousPoint = nil;
@@ -175,6 +187,7 @@ typedef enum int16_t {
         properties.emptyPoint = [generatedPathOfPoints lastObject];
         [self animateImages];
     }];
+    NSLog(@"Hiden image position y:%f x:%f", hiddenImage.frame.origin.y, hiddenImage.frame.origin.x);
 }
 
 - (void)swapSomeImage: (UIImageView *)someImage AnotherImageWithAnimation: (UIImageView *)anotherImage
@@ -196,7 +209,7 @@ typedef enum int16_t {
     
     [anotherImage.layer addAnimation:transition forKey:nil];
     someImage.alpha = 1;
-    anotherImage.alpha = 0;
+    anotherImage.alpha = 0.0;
 }
 
 - (NSArray *)getAvailiablePointsFromCurrent: (GamePoint *)currentPoint
@@ -232,6 +245,9 @@ typedef enum int16_t {
         for (int j = 0; j < properties.columnsCount; j++) {
             UIImageView *first = self.imagesArray[i][j];
             UIImageView *second = self.imagesCopyArray[i][j];
+            if (properties.emptyPoint.x == j && properties.emptyPoint.y == i) {
+                continue;
+            }
             if (first.image != second.image) return NO;
         }
     }
@@ -242,6 +258,7 @@ typedef enum int16_t {
 
 - (void)moveImagesToRightFromX: (int)fromX
 {
+    UIImageView *emptyImage = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
     [UIView animateWithDuration:0.5 animations:^{
         for (int i = properties.emptyPoint.x - 1; i >= fromX; i--) {
             GamePoint *destinationPoint = [[GamePoint alloc] initWithX:i + 1 Y:properties.emptyPoint.y];
@@ -252,11 +269,17 @@ typedef enum int16_t {
             self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[destinationPoint.y][i];
         }
     }];
+    GamePoint *destinationPoint = [[GamePoint alloc] initWithX:fromX Y:properties.emptyPoint.y];
+    CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+    CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+    [emptyImage setFrame:frame];
+    self.imagesArray[destinationPoint.y][destinationPoint.x] = emptyImage;
     properties.emptyPoint.x = fromX;
 }
 
 - (void)moveImagesToLeftFromX: (int)fromX
 {
+    UIImageView *emptyImage = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
     [UIView animateWithDuration:0.5 animations:^{
         for (int i = properties.emptyPoint.x + 1; i <= fromX; i++) {
             GamePoint *destinationPoint = [[GamePoint alloc] initWithX:i - 1 Y:properties.emptyPoint.y];
@@ -267,11 +290,18 @@ typedef enum int16_t {
             self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[destinationPoint.y][i];
         }
     }];
+    GamePoint *destinationPoint = [[GamePoint alloc] initWithX:fromX Y:properties.emptyPoint.y];
+    CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+    CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+    [emptyImage setFrame:frame];
+    self.imagesArray[destinationPoint.y][destinationPoint.x] = emptyImage;
+    
     properties.emptyPoint.x = fromX;
 }
 
 - (void)moveImagesToTopFromY: (int)fromY
 {
+    UIImageView *emptyImage = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
     [UIView animateWithDuration:0.5 animations:^{
         for (int j = properties.emptyPoint.y + 1; j <= fromY; j++) {
             GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:j - 1];
@@ -282,11 +312,18 @@ typedef enum int16_t {
             self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[j][destinationPoint.x];
         }
     }];
+    GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:fromY];
+    CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+    CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+    [emptyImage setFrame:frame];
+    self.imagesArray[destinationPoint.y][destinationPoint.x] = emptyImage;
+    
     properties.emptyPoint.y = fromY;
 }
 
 - (void)moveImagesToBottomFromY: (int)fromY
 {
+    UIImageView *emptyImage = self.imagesArray[properties.emptyPoint.y][properties.emptyPoint.x];
     [UIView animateWithDuration:0.5 animations:^{
         for (int j = properties.emptyPoint.y - 1; j >= fromY; j--) {
             GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:j + 1];
@@ -297,6 +334,12 @@ typedef enum int16_t {
             self.imagesArray[destinationPoint.y][destinationPoint.x] = self.imagesArray[j][destinationPoint.x];
         }
     }];
+    GamePoint *destinationPoint = [[GamePoint alloc] initWithX:properties.emptyPoint.x Y:fromY];
+    CGPoint destPoint = [self getCGPointFromGamePoint:destinationPoint];
+    CGRect frame = CGRectMake(destPoint.x, destPoint.y, properties.elemWidth, properties.elemHieght);
+    [emptyImage setFrame:frame];
+    self.imagesArray[destinationPoint.y][destinationPoint.x] = emptyImage;
+
     properties.emptyPoint.y = fromY;
 }
 
@@ -314,17 +357,19 @@ typedef enum int16_t {
 }
 
 - (void)configureBordersForImageView: (UIImageView *)imageView
+                             Enabled: (BOOL)enabled
 {
+    float value = (enabled) ? 1.0 : 0.0;
     UIColor *borderColor = [UIColor blackColor];
     [imageView.layer setBorderColor:borderColor.CGColor];
-    [imageView.layer setBorderWidth:1.0];
+    [imageView.layer setBorderWidth:value];
 }
 
-- (void)setupBordersForAllImages
+- (void)setupBordersForAllImagesEnabled: (BOOL)enabled
 {
     for (int i = 0; i < properties.rowsCount; i++) {
         for (int j = 0; j < properties.columnsCount; j++) {
-            [self configureBordersForImageView:self.imagesArray[i][j]];
+            [self configureBordersForImageView:self.imagesArray[i][j] Enabled:enabled];
         }
     }
     [self makeCopyOfImages];
