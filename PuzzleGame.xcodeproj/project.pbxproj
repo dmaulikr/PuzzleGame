@@ -7,70 +7,72 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		62775C6A25E2A3DD9B75D834 /* libPods-HW_SlicedImages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58210587244571EE4190FD39 /* libPods-HW_SlicedImages.a */; };
-		A80A469A1A8F2409001442C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A80A46991A8F2409001442C8 /* main.m */; };
-		A80A469D1A8F2409001442C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A80A469C1A8F2409001442C8 /* AppDelegate.m */; };
-		A80A46A31A8F2409001442C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A80A46A11A8F2409001442C8 /* Main.storyboard */; };
-		A80A46A51A8F2409001442C8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A80A46A41A8F2409001442C8 /* Images.xcassets */; };
-		A80A46A81A8F2409001442C8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A80A46A61A8F2409001442C8 /* LaunchScreen.xib */; };
-		A80A46B41A8F2409001442C8 /* HW_SlicedImagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A80A46B31A8F2409001442C8 /* HW_SlicedImagesTests.m */; };
-		B26C3CB91A96622D00E71C05 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B26C3CB81A96622D00E71C05 /* DetailViewController.m */; };
-		B27E72DF1A9A46B700820AB6 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E72DE1A9A46B700820AB6 /* Game.m */; };
-		B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B27E72E41A9A497900820AB6 /* GameProperties.m */; };
-		B2A79AA21A94E4380062FAFF /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA11A94E4380062FAFF /* TableViewController.m */; };
-		B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A79AA41A94E7A50062FAFF /* NetManager.m */; };
-		B2CFCC3C1A9BB614007EE4DE /* GamePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */; };
+		B21BFD301AA0A594006C6EFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD2F1AA0A594006C6EFA /* main.m */; };
+		B21BFD331AA0A594006C6EFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD321AA0A594006C6EFA /* AppDelegate.m */; };
+		B21BFD361AA0A594006C6EFA /* PuzzleGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD341AA0A594006C6EFA /* PuzzleGame.xcdatamodeld */; };
+		B21BFD3C1AA0A594006C6EFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B21BFD3A1AA0A594006C6EFA /* Main.storyboard */; };
+		B21BFD3E1AA0A594006C6EFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B21BFD3D1AA0A594006C6EFA /* Images.xcassets */; };
+		B21BFD411AA0A594006C6EFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B21BFD3F1AA0A594006C6EFA /* LaunchScreen.xib */; };
+		B21BFD4D1AA0A594006C6EFA /* PuzzleGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD4C1AA0A594006C6EFA /* PuzzleGameTests.m */; };
+		B21BFD5B1AA0A5ED006C6EFA /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD5A1AA0A5ED006C6EFA /* NetManager.m */; };
+		B21BFD5E1AA0A629006C6EFA /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD5D1AA0A629006C6EFA /* Game.m */; };
+		B21BFD611AA0A667006C6EFA /* GameProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD601AA0A667006C6EFA /* GameProperties.m */; };
+		B21BFD641AA0A684006C6EFA /* GamePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD631AA0A684006C6EFA /* GamePoint.m */; };
+		B21BFD671AA0A6AC006C6EFA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD661AA0A6AC006C6EFA /* TableViewController.m */; };
+		B21BFD6D1AA0A779006C6EFA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21BFD6C1AA0A779006C6EFA /* DetailViewController.m */; };
+		C84FCEC6674D7B36C5B7DE78 /* libPods-PuzzleGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 550FB18AC3FF9B917F056462 /* libPods-PuzzleGame.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A80A46AE1A8F2409001442C8 /* PBXContainerItemProxy */ = {
+		B21BFD471AA0A594006C6EFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A80A468C1A8F2409001442C8 /* Project object */;
+			containerPortal = B21BFD221AA0A594006C6EFA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A80A46931A8F2409001442C8;
-			remoteInfo = HW_SlicedImages;
+			remoteGlobalIDString = B21BFD291AA0A594006C6EFA;
+			remoteInfo = PuzzleGame;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F1B494793436C53EE07C5CB /* Pods-HW_SlicedImages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_SlicedImages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HW_SlicedImages/Pods-HW_SlicedImages.debug.xcconfig"; sourceTree = "<group>"; };
-		527FE017EEED1F17C4A172B6 /* Pods-HW_SlicedImages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_SlicedImages.release.xcconfig"; path = "Pods/Target Support Files/Pods-HW_SlicedImages/Pods-HW_SlicedImages.release.xcconfig"; sourceTree = "<group>"; };
-		58210587244571EE4190FD39 /* libPods-HW_SlicedImages.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HW_SlicedImages.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A80A46941A8F2409001442C8 /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A80A46981A8F2409001442C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A80A46991A8F2409001442C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A80A469B1A8F2409001442C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A80A469C1A8F2409001442C8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A80A46A21A8F2409001442C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A80A46A41A8F2409001442C8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A80A46A71A8F2409001442C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A80A46AD1A8F2409001442C8 /* PuzzleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuzzleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A80A46B21A8F2409001442C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A80A46B31A8F2409001442C8 /* HW_SlicedImagesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HW_SlicedImagesTests.m; sourceTree = "<group>"; };
-		B26C3CB71A96622D00E71C05 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		B26C3CB81A96622D00E71C05 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		B27E72DD1A9A46B700820AB6 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		B27E72DE1A9A46B700820AB6 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
-		B27E72E31A9A497900820AB6 /* GameProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameProperties.h; sourceTree = "<group>"; };
-		B27E72E41A9A497900820AB6 /* GameProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameProperties.m; sourceTree = "<group>"; };
-		B2A79AA01A94E4380062FAFF /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		B2A79AA11A94E4380062FAFF /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		B2A79AA31A94E7A50062FAFF /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
-		B2A79AA41A94E7A50062FAFF /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
-		B2CFCC3A1A9BB614007EE4DE /* GamePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePoint.h; sourceTree = "<group>"; };
-		B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePoint.m; sourceTree = "<group>"; };
+		550FB18AC3FF9B917F056462 /* libPods-PuzzleGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PuzzleGame.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C5D99E9038DBE34B53A1694 /* Pods-PuzzleGame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PuzzleGame.release.xcconfig"; path = "Pods/Target Support Files/Pods-PuzzleGame/Pods-PuzzleGame.release.xcconfig"; sourceTree = "<group>"; };
+		B21BFD2A1AA0A594006C6EFA /* PuzzleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PuzzleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B21BFD2E1AA0A594006C6EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B21BFD2F1AA0A594006C6EFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B21BFD311AA0A594006C6EFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B21BFD321AA0A594006C6EFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B21BFD351AA0A594006C6EFA /* PuzzleGame.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PuzzleGame.xcdatamodel; sourceTree = "<group>"; };
+		B21BFD3B1AA0A594006C6EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B21BFD3D1AA0A594006C6EFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B21BFD401AA0A594006C6EFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B21BFD461AA0A594006C6EFA /* PuzzleGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PuzzleGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B21BFD4B1AA0A594006C6EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B21BFD4C1AA0A594006C6EFA /* PuzzleGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PuzzleGameTests.m; sourceTree = "<group>"; };
+		B21BFD591AA0A5ED006C6EFA /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		B21BFD5A1AA0A5ED006C6EFA /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		B21BFD5C1AA0A629006C6EFA /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		B21BFD5D1AA0A629006C6EFA /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		B21BFD5F1AA0A667006C6EFA /* GameProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameProperties.h; sourceTree = "<group>"; };
+		B21BFD601AA0A667006C6EFA /* GameProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameProperties.m; sourceTree = "<group>"; };
+		B21BFD621AA0A684006C6EFA /* GamePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePoint.h; sourceTree = "<group>"; };
+		B21BFD631AA0A684006C6EFA /* GamePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePoint.m; sourceTree = "<group>"; };
+		B21BFD651AA0A6AC006C6EFA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		B21BFD661AA0A6AC006C6EFA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		B21BFD6B1AA0A779006C6EFA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B21BFD6C1AA0A779006C6EFA /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		BB9EFFB7203348648B85A6DF /* Pods-PuzzleGame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PuzzleGame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PuzzleGame/Pods-PuzzleGame.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A80A46911A8F2409001442C8 /* Frameworks */ = {
+		B21BFD271AA0A594006C6EFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62775C6A25E2A3DD9B75D834 /* libPods-HW_SlicedImages.a in Frameworks */,
+				C84FCEC6674D7B36C5B7DE78 /* libPods-PuzzleGame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A80A46AA1A8F2409001442C8 /* Frameworks */ = {
+		B21BFD431AA0A594006C6EFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,177 +82,178 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		34E67E352C371138C464A871 /* Pods */ = {
+		88A97C8DB350CD3BF7EBCDEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F1B494793436C53EE07C5CB /* Pods-HW_SlicedImages.debug.xcconfig */,
-				527FE017EEED1F17C4A172B6 /* Pods-HW_SlicedImages.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		522AD1D6D1E67B848C59AE38 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				58210587244571EE4190FD39 /* libPods-HW_SlicedImages.a */,
+				550FB18AC3FF9B917F056462 /* libPods-PuzzleGame.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A80A468B1A8F2409001442C8 = {
+		B21BFD211AA0A594006C6EFA = {
 			isa = PBXGroup;
 			children = (
-				A80A46961A8F2409001442C8 /* HW_SlicedImages */,
-				A80A46B01A8F2409001442C8 /* HW_SlicedImagesTests */,
-				A80A46951A8F2409001442C8 /* Products */,
-				34E67E352C371138C464A871 /* Pods */,
-				522AD1D6D1E67B848C59AE38 /* Frameworks */,
+				B21BFD2C1AA0A594006C6EFA /* PuzzleGame */,
+				B21BFD491AA0A594006C6EFA /* PuzzleGameTests */,
+				B21BFD2B1AA0A594006C6EFA /* Products */,
+				DBB07DB8F38C2AE7CA292C7F /* Pods */,
+				88A97C8DB350CD3BF7EBCDEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		A80A46951A8F2409001442C8 /* Products */ = {
+		B21BFD2B1AA0A594006C6EFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A80A46941A8F2409001442C8 /* PuzzleGame.app */,
-				A80A46AD1A8F2409001442C8 /* PuzzleGameTests.xctest */,
+				B21BFD2A1AA0A594006C6EFA /* PuzzleGame.app */,
+				B21BFD461AA0A594006C6EFA /* PuzzleGameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A80A46961A8F2409001442C8 /* HW_SlicedImages */ = {
+		B21BFD2C1AA0A594006C6EFA /* PuzzleGame */ = {
 			isa = PBXGroup;
 			children = (
-				B26C3CBC1A96830400E71C05 /* View */,
-				B26C3CBA1A9682F800E71C05 /* Model */,
-				B26C3CBD1A96830A00E71C05 /* Controller */,
-				A80A46A41A8F2409001442C8 /* Images.xcassets */,
-				A80A46971A8F2409001442C8 /* Supporting Files */,
+				B21BFD581AA0A5B7006C6EFA /* Model */,
+				B21BFD571AA0A5AD006C6EFA /* Controller */,
+				B21BFD561AA0A5A9006C6EFA /* View */,
+				B21BFD3D1AA0A594006C6EFA /* Images.xcassets */,
+				B21BFD341AA0A594006C6EFA /* PuzzleGame.xcdatamodeld */,
+				B21BFD2D1AA0A594006C6EFA /* Supporting Files */,
 			);
-			path = HW_SlicedImages;
+			path = PuzzleGame;
 			sourceTree = "<group>";
 		};
-		A80A46971A8F2409001442C8 /* Supporting Files */ = {
+		B21BFD2D1AA0A594006C6EFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A80A46981A8F2409001442C8 /* Info.plist */,
-				A80A46991A8F2409001442C8 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A80A46B01A8F2409001442C8 /* HW_SlicedImagesTests */ = {
-			isa = PBXGroup;
-			children = (
-				A80A46B31A8F2409001442C8 /* HW_SlicedImagesTests.m */,
-				A80A46B11A8F2409001442C8 /* Supporting Files */,
-			);
-			path = HW_SlicedImagesTests;
-			sourceTree = "<group>";
-		};
-		A80A46B11A8F2409001442C8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A80A46B21A8F2409001442C8 /* Info.plist */,
+				B21BFD2E1AA0A594006C6EFA /* Info.plist */,
+				B21BFD2F1AA0A594006C6EFA /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B26C3CBA1A9682F800E71C05 /* Model */ = {
+		B21BFD491AA0A594006C6EFA /* PuzzleGameTests */ = {
 			isa = PBXGroup;
 			children = (
-				A80A469C1A8F2409001442C8 /* AppDelegate.m */,
-				A80A469B1A8F2409001442C8 /* AppDelegate.h */,
-				B2A79AA31A94E7A50062FAFF /* NetManager.h */,
-				B2A79AA41A94E7A50062FAFF /* NetManager.m */,
-				B27E72DD1A9A46B700820AB6 /* Game.h */,
-				B27E72DE1A9A46B700820AB6 /* Game.m */,
-				B27E72E31A9A497900820AB6 /* GameProperties.h */,
-				B27E72E41A9A497900820AB6 /* GameProperties.m */,
-				B2CFCC3A1A9BB614007EE4DE /* GamePoint.h */,
-				B2CFCC3B1A9BB614007EE4DE /* GamePoint.m */,
+				B21BFD4C1AA0A594006C6EFA /* PuzzleGameTests.m */,
+				B21BFD4A1AA0A594006C6EFA /* Supporting Files */,
 			);
-			name = Model;
+			path = PuzzleGameTests;
 			sourceTree = "<group>";
 		};
-		B26C3CBC1A96830400E71C05 /* View */ = {
+		B21BFD4A1AA0A594006C6EFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A80A46A11A8F2409001442C8 /* Main.storyboard */,
-				A80A46A61A8F2409001442C8 /* LaunchScreen.xib */,
+				B21BFD4B1AA0A594006C6EFA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B21BFD561AA0A5A9006C6EFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B21BFD3A1AA0A594006C6EFA /* Main.storyboard */,
+				B21BFD3F1AA0A594006C6EFA /* LaunchScreen.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
 		};
-		B26C3CBD1A96830A00E71C05 /* Controller */ = {
+		B21BFD571AA0A5AD006C6EFA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B2A79AA01A94E4380062FAFF /* TableViewController.h */,
-				B2A79AA11A94E4380062FAFF /* TableViewController.m */,
-				B26C3CB71A96622D00E71C05 /* DetailViewController.h */,
-				B26C3CB81A96622D00E71C05 /* DetailViewController.m */,
+				B21BFD651AA0A6AC006C6EFA /* TableViewController.h */,
+				B21BFD661AA0A6AC006C6EFA /* TableViewController.m */,
+				B21BFD6B1AA0A779006C6EFA /* DetailViewController.h */,
+				B21BFD6C1AA0A779006C6EFA /* DetailViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		B21BFD581AA0A5B7006C6EFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B21BFD311AA0A594006C6EFA /* AppDelegate.h */,
+				B21BFD321AA0A594006C6EFA /* AppDelegate.m */,
+				B21BFD591AA0A5ED006C6EFA /* NetManager.h */,
+				B21BFD5A1AA0A5ED006C6EFA /* NetManager.m */,
+				B21BFD5C1AA0A629006C6EFA /* Game.h */,
+				B21BFD5D1AA0A629006C6EFA /* Game.m */,
+				B21BFD5F1AA0A667006C6EFA /* GameProperties.h */,
+				B21BFD601AA0A667006C6EFA /* GameProperties.m */,
+				B21BFD621AA0A684006C6EFA /* GamePoint.h */,
+				B21BFD631AA0A684006C6EFA /* GamePoint.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DBB07DB8F38C2AE7CA292C7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB9EFFB7203348648B85A6DF /* Pods-PuzzleGame.debug.xcconfig */,
+				7C5D99E9038DBE34B53A1694 /* Pods-PuzzleGame.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A80A46931A8F2409001442C8 /* PuzzleGame */ = {
+		B21BFD291AA0A594006C6EFA /* PuzzleGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A80A46B71A8F2409001442C8 /* Build configuration list for PBXNativeTarget "PuzzleGame" */;
+			buildConfigurationList = B21BFD501AA0A594006C6EFA /* Build configuration list for PBXNativeTarget "PuzzleGame" */;
 			buildPhases = (
-				3A9404D70A96C00F3571997C /* Check Pods Manifest.lock */,
-				A80A46901A8F2409001442C8 /* Sources */,
-				A80A46911A8F2409001442C8 /* Frameworks */,
-				A80A46921A8F2409001442C8 /* Resources */,
-				9684D2E1E4430AA9FD231347 /* Copy Pods Resources */,
+				F21FB5D1559DA98333EB77F0 /* Check Pods Manifest.lock */,
+				B21BFD261AA0A594006C6EFA /* Sources */,
+				B21BFD271AA0A594006C6EFA /* Frameworks */,
+				B21BFD281AA0A594006C6EFA /* Resources */,
+				7A1F8B1B9491E500193DAC34 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PuzzleGame;
-			productName = HW_SlicedImages;
-			productReference = A80A46941A8F2409001442C8 /* PuzzleGame.app */;
+			productName = PuzzleGame;
+			productReference = B21BFD2A1AA0A594006C6EFA /* PuzzleGame.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A80A46AC1A8F2409001442C8 /* PuzzleGameTests */ = {
+		B21BFD451AA0A594006C6EFA /* PuzzleGameTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A80A46BA1A8F2409001442C8 /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */;
+			buildConfigurationList = B21BFD531AA0A594006C6EFA /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */;
 			buildPhases = (
-				A80A46A91A8F2409001442C8 /* Sources */,
-				A80A46AA1A8F2409001442C8 /* Frameworks */,
-				A80A46AB1A8F2409001442C8 /* Resources */,
+				B21BFD421AA0A594006C6EFA /* Sources */,
+				B21BFD431AA0A594006C6EFA /* Frameworks */,
+				B21BFD441AA0A594006C6EFA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A80A46AF1A8F2409001442C8 /* PBXTargetDependency */,
+				B21BFD481AA0A594006C6EFA /* PBXTargetDependency */,
 			);
 			name = PuzzleGameTests;
-			productName = HW_SlicedImagesTests;
-			productReference = A80A46AD1A8F2409001442C8 /* PuzzleGameTests.xctest */;
+			productName = PuzzleGameTests;
+			productReference = B21BFD461AA0A594006C6EFA /* PuzzleGameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A80A468C1A8F2409001442C8 /* Project object */ = {
+		B21BFD221AA0A594006C6EFA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = Alexander;
+				ORGANIZATIONNAME = fix;
 				TargetAttributes = {
-					A80A46931A8F2409001442C8 = {
+					B21BFD291AA0A594006C6EFA = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					A80A46AC1A8F2409001442C8 = {
+					B21BFD451AA0A594006C6EFA = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = A80A46931A8F2409001442C8;
+						TestTargetID = B21BFD291AA0A594006C6EFA;
 					};
 				};
 			};
-			buildConfigurationList = A80A468F1A8F2409001442C8 /* Build configuration list for PBXProject "PuzzleGame" */;
+			buildConfigurationList = B21BFD251AA0A594006C6EFA /* Build configuration list for PBXProject "PuzzleGame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -258,29 +261,29 @@
 				en,
 				Base,
 			);
-			mainGroup = A80A468B1A8F2409001442C8;
-			productRefGroup = A80A46951A8F2409001442C8 /* Products */;
+			mainGroup = B21BFD211AA0A594006C6EFA;
+			productRefGroup = B21BFD2B1AA0A594006C6EFA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A80A46931A8F2409001442C8 /* PuzzleGame */,
-				A80A46AC1A8F2409001442C8 /* PuzzleGameTests */,
+				B21BFD291AA0A594006C6EFA /* PuzzleGame */,
+				B21BFD451AA0A594006C6EFA /* PuzzleGameTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A80A46921A8F2409001442C8 /* Resources */ = {
+		B21BFD281AA0A594006C6EFA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80A46A31A8F2409001442C8 /* Main.storyboard in Resources */,
-				A80A46A81A8F2409001442C8 /* LaunchScreen.xib in Resources */,
-				A80A46A51A8F2409001442C8 /* Images.xcassets in Resources */,
+				B21BFD3C1AA0A594006C6EFA /* Main.storyboard in Resources */,
+				B21BFD411AA0A594006C6EFA /* LaunchScreen.xib in Resources */,
+				B21BFD3E1AA0A594006C6EFA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A80A46AB1A8F2409001442C8 /* Resources */ = {
+		B21BFD441AA0A594006C6EFA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,7 +293,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3A9404D70A96C00F3571997C /* Check Pods Manifest.lock */ = {
+		7A1F8B1B9491E500193DAC34 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PuzzleGame/Pods-PuzzleGame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F21FB5D1559DA98333EB77F0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,70 +323,56 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9684D2E1E4430AA9FD231347 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HW_SlicedImages/Pods-HW_SlicedImages-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A80A46901A8F2409001442C8 /* Sources */ = {
+		B21BFD261AA0A594006C6EFA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B26C3CB91A96622D00E71C05 /* DetailViewController.m in Sources */,
-				B27E72E51A9A497900820AB6 /* GameProperties.m in Sources */,
-				B2CFCC3C1A9BB614007EE4DE /* GamePoint.m in Sources */,
-				A80A469D1A8F2409001442C8 /* AppDelegate.m in Sources */,
-				B2A79AA51A94E7A50062FAFF /* NetManager.m in Sources */,
-				B27E72DF1A9A46B700820AB6 /* Game.m in Sources */,
-				B2A79AA21A94E4380062FAFF /* TableViewController.m in Sources */,
-				A80A469A1A8F2409001442C8 /* main.m in Sources */,
+				B21BFD5E1AA0A629006C6EFA /* Game.m in Sources */,
+				B21BFD361AA0A594006C6EFA /* PuzzleGame.xcdatamodeld in Sources */,
+				B21BFD6D1AA0A779006C6EFA /* DetailViewController.m in Sources */,
+				B21BFD5B1AA0A5ED006C6EFA /* NetManager.m in Sources */,
+				B21BFD331AA0A594006C6EFA /* AppDelegate.m in Sources */,
+				B21BFD641AA0A684006C6EFA /* GamePoint.m in Sources */,
+				B21BFD611AA0A667006C6EFA /* GameProperties.m in Sources */,
+				B21BFD301AA0A594006C6EFA /* main.m in Sources */,
+				B21BFD671AA0A6AC006C6EFA /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A80A46A91A8F2409001442C8 /* Sources */ = {
+		B21BFD421AA0A594006C6EFA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A80A46B41A8F2409001442C8 /* HW_SlicedImagesTests.m in Sources */,
+				B21BFD4D1AA0A594006C6EFA /* PuzzleGameTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A80A46AF1A8F2409001442C8 /* PBXTargetDependency */ = {
+		B21BFD481AA0A594006C6EFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A80A46931A8F2409001442C8 /* PuzzleGame */;
-			targetProxy = A80A46AE1A8F2409001442C8 /* PBXContainerItemProxy */;
+			target = B21BFD291AA0A594006C6EFA /* PuzzleGame */;
+			targetProxy = B21BFD471AA0A594006C6EFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A80A46A11A8F2409001442C8 /* Main.storyboard */ = {
+		B21BFD3A1AA0A594006C6EFA /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A80A46A21A8F2409001442C8 /* Base */,
+				B21BFD3B1AA0A594006C6EFA /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		A80A46A61A8F2409001442C8 /* LaunchScreen.xib */ = {
+		B21BFD3F1AA0A594006C6EFA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A80A46A71A8F2409001442C8 /* Base */,
+				B21BFD401AA0A594006C6EFA /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -376,7 +380,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A80A46B51A8F2409001442C8 /* Debug */ = {
+		B21BFD4E1AA0A594006C6EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -417,7 +421,7 @@
 			};
 			name = Debug;
 		};
-		A80A46B61A8F2409001442C8 /* Release */ = {
+		B21BFD4F1AA0A594006C6EFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -452,29 +456,29 @@
 			};
 			name = Release;
 		};
-		A80A46B81A8F2409001442C8 /* Debug */ = {
+		B21BFD511AA0A594006C6EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F1B494793436C53EE07C5CB /* Pods-HW_SlicedImages.debug.xcconfig */;
+			baseConfigurationReference = BB9EFFB7203348648B85A6DF /* Pods-PuzzleGame.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HW_SlicedImages/Info.plist;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		A80A46B91A8F2409001442C8 /* Release */ = {
+		B21BFD521AA0A594006C6EFA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 527FE017EEED1F17C4A172B6 /* Pods-HW_SlicedImages.release.xcconfig */;
+			baseConfigurationReference = 7C5D99E9038DBE34B53A1694 /* Pods-PuzzleGame.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = HW_SlicedImages/Info.plist;
+				INFOPLIST_FILE = PuzzleGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = PuzzleGame;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		A80A46BB1A8F2409001442C8 /* Debug */ = {
+		B21BFD541AA0A594006C6EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -486,14 +490,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = HW_SlicedImagesTests/Info.plist;
+				INFOPLIST_FILE = PuzzleGameTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = PuzzleGameTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HW_SlicedImages.app/HW_SlicedImages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PuzzleGame.app/PuzzleGame";
 			};
 			name = Debug;
 		};
-		A80A46BC1A8F2409001442C8 /* Release */ = {
+		B21BFD551AA0A594006C6EFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,44 +505,57 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = HW_SlicedImagesTests/Info.plist;
+				INFOPLIST_FILE = PuzzleGameTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = PuzzleGameTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HW_SlicedImages.app/HW_SlicedImages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PuzzleGame.app/PuzzleGame";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A80A468F1A8F2409001442C8 /* Build configuration list for PBXProject "PuzzleGame" */ = {
+		B21BFD251AA0A594006C6EFA /* Build configuration list for PBXProject "PuzzleGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A80A46B51A8F2409001442C8 /* Debug */,
-				A80A46B61A8F2409001442C8 /* Release */,
+				B21BFD4E1AA0A594006C6EFA /* Debug */,
+				B21BFD4F1AA0A594006C6EFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A80A46B71A8F2409001442C8 /* Build configuration list for PBXNativeTarget "PuzzleGame" */ = {
+		B21BFD501AA0A594006C6EFA /* Build configuration list for PBXNativeTarget "PuzzleGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A80A46B81A8F2409001442C8 /* Debug */,
-				A80A46B91A8F2409001442C8 /* Release */,
+				B21BFD511AA0A594006C6EFA /* Debug */,
+				B21BFD521AA0A594006C6EFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A80A46BA1A8F2409001442C8 /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */ = {
+		B21BFD531AA0A594006C6EFA /* Build configuration list for PBXNativeTarget "PuzzleGameTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A80A46BB1A8F2409001442C8 /* Debug */,
-				A80A46BC1A8F2409001442C8 /* Release */,
+				B21BFD541AA0A594006C6EFA /* Debug */,
+				B21BFD551AA0A594006C6EFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B21BFD341AA0A594006C6EFA /* PuzzleGame.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B21BFD351AA0A594006C6EFA /* PuzzleGame.xcdatamodel */,
+			);
+			currentVersion = B21BFD351AA0A594006C6EFA /* PuzzleGame.xcdatamodel */;
+			path = PuzzleGame.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = A80A468C1A8F2409001442C8 /* Project object */;
+	rootObject = B21BFD221AA0A594006C6EFA /* Project object */;
 }
