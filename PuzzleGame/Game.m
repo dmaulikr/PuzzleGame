@@ -46,9 +46,9 @@ typedef enum int16_t {
 {
     [[NetManager sharedInstance] getTitles:^(NSArray *arr, NSError *error) {
         if (!error) {
-            self.imagesArray = arr;
+            self.dataArray = arr;
             NSMutableArray *titles = [NSMutableArray new];
-            for (NSDictionary *dict in self.imagesArray) {
+            for (NSDictionary *dict in self.dataArray) {
                 [titles addObject:dict[@"folder_name"]];
             }
             dispatch_async(dispatch_get_main_queue(), ^{

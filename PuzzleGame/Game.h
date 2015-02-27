@@ -13,6 +13,7 @@
 @interface Game : NSObject
 
 @property (nonatomic, strong) NSArray *imagesArray;
+@property (nonatomic, strong) NSArray *dataArray;
 
 + (instancetype)sharedInstance;
 

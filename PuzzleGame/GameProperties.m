@@ -32,7 +32,7 @@
 
 - (GameProperties *)initPropertiesWithImageNamed: (NSString *)imageName
 {
-    for (NSDictionary *dict in [Game sharedInstance].imagesArray) {
+    for (NSDictionary *dict in [Game sharedInstance].dataArray) {
         if ([imageName isEqual:dict[@"folder_name"]]) {
             return [self initWithRows:[dict[@"rows_count"] floatValue] Columns:[dict[@"columns_count"] floatValue] ElementHeight:[dict[@"elem_height"] floatValue] Width:[dict[@"elem_width"] floatValue] ImageName:imageName];
         }
