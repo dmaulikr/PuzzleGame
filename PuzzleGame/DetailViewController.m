@@ -44,15 +44,22 @@
     [self.startButton setUserInteractionEnabled: YES];
     
     self.scrollView.delegate = self;
-    float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
-                        self.view.bounds.size.height / self.heightOfView.constant);
-    self.scrollView.minimumZoomScale = (minZoom < 1) ? minZoom : 1;
     self.scrollView.maximumZoomScale = 6.0;
+    [self updateZoom];
     
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
     
-    self.mainView.userInteractionEnabled = YES;
+    [self.mainView setUserInteractionEnabled:NO];
     [self.mainView addGestureRecognizer:singleTapGestureRecognizer];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                             forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
 }
 
 - (void)resizeMainView
@@ -72,7 +79,38 @@
     }
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
+    [super willAnimateRotationToInterfaceOrientation:interfaceOrientation duration:duration];
+    
+    [self updateZoom];
+    float imageWidth = self.mainView.frame.size.width;
+    float imageHeight = self.mainView.frame.size.height;
+    
+    float viewWidth = self.view.bounds.size.width;
+    float viewHeight = self.view.bounds.size.height - self.navigationController.navigationBar.frame.size.height - 20;
+    
+    // center image if it is smaller than screen
+    float hPadding = (viewWidth - imageWidth) / 2.0;
+    if (hPadding < 0) hPadding = 0;
+    
+    float vPadding = (viewHeight - imageHeight) / 2.0;
+    if (vPadding < 0) vPadding = 0;
+    
+    self.constraintLeft.constant = hPadding;
+    self.constraintRight.constant = hPadding;
+    self.constraintTop.constant = vPadding;
+    self.constraintBottom.constant = vPadding;
+    
+    [self.view layoutIfNeeded];
+    [self.view updateConstraintsIfNeeded];
+}
 
+- (void)updateZoom
+{
+    float minZoom = MIN(self.view.bounds.size.width / self.widthOfView.constant,
+                        self.view.bounds.size.height / self.heightOfView.constant);
+    self.scrollView.minimumZoomScale = (minZoom < 1) ? minZoom : 1;
+}
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
@@ -136,6 +174,7 @@
                 hud.labelText = @"Compleated";
                 [hud hide:YES afterDelay:1.0];
                 [self.startButton setUserInteractionEnabled:YES];
+                [self.mainView setUserInteractionEnabled:NO];
             });
             
         }];
@@ -145,6 +184,7 @@
 - (IBAction)startGamePressed:(UIButton *)sender {
     [[Game sharedInstance] setupBordersForAllImagesEnabled:YES];
     [[Game sharedInstance] startHidingImages];
+    [self.mainView setUserInteractionEnabled:YES];
     [self.startButton setUserInteractionEnabled: NO];
 }
 @end
