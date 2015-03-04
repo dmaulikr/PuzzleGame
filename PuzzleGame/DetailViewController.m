@@ -9,11 +9,11 @@
 #import "DetailViewController.h"
 #import "Game.h"
 #import "GameProperties.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "GameController.h"
 
 @interface DetailViewController () <UIScrollViewDelegate> {
     GameProperties *properties;
+    GameController *gameController;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -36,12 +36,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    gameController = [GameController new];
     properties = [[Game sharedInstance] getGameProperties];
     
     [self resizeMainView];
-    [self addArrayWithEmptyImagesOnMainView];
-    [[Game sharedInstance] completeArrayWithImages];
-    [self.startButton setUserInteractionEnabled: YES];
     
     self.scrollView.delegate = self;
     self.scrollView.maximumZoomScale = 6.0;
@@ -51,6 +49,10 @@
     
     [self.mainView setUserInteractionEnabled:NO];
     [self.mainView addGestureRecognizer:singleTapGestureRecognizer];
+    
+    [gameController setMainView:self.mainView];
+    [gameController downloadImages];
+    [self.startButton setUserInteractionEnabled: YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -67,16 +69,6 @@
     self.widthOfView.constant = properties.elemWidth * properties.columnsCount;
     self.heightOfView.constant = properties.elemHieght * properties.rowsCount;
     [self.mainView setNeedsUpdateConstraints];
-}
-
-- (void)addArrayWithEmptyImagesOnMainView
-{
-    [[Game sharedInstance] createArrayWithEmptyImages];
-    for (NSArray *elementArray in [Game sharedInstance].imagesArray) {
-        for (UIImageView *imageView in elementArray) {
-            [self.mainView addSubview:imageView];
-        }
-    }
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration {
@@ -145,45 +137,33 @@
 {
     CGPoint touchLocation = [tapGestureRecognizer locationInView:self.mainView];
     GamePoint *touchInGamePoint = [[Game sharedInstance] getGamePointFromCGPoint:touchLocation];
-    properties = [[Game sharedInstance] getGameProperties];
     
-    if (touchInGamePoint.y == properties.emptyPoint.y) {
-        if (touchInGamePoint.x < properties.emptyPoint.x) {
-            [[Game sharedInstance] moveImagesToRightFromX:touchInGamePoint.x];
+    if (touchInGamePoint.y == [gameController getEmptyPoint].y) {
+        if (touchInGamePoint.x < [gameController getEmptyPoint].x) {
+            [gameController moveImagesToRightFromX:touchInGamePoint.x];
         }
-        if (touchInGamePoint.x > properties.emptyPoint.x) {
-            [[Game sharedInstance] moveImagesToLeftFromX:touchInGamePoint.x];
-        }
-    }
-    if (touchInGamePoint.x == properties.emptyPoint.x) {
-        if (touchInGamePoint.y < properties.emptyPoint.y) {
-            [[Game sharedInstance] moveImagesToBottomFromY:touchInGamePoint.y];
-        }
-        if (touchInGamePoint.y > properties.emptyPoint.y) {
-            [[Game sharedInstance] moveImagesToTopFromY:touchInGamePoint.y];
+        if (touchInGamePoint.x > [gameController getEmptyPoint].x) {
+            [gameController moveImagesToLeftFromX:touchInGamePoint.x];
         }
     }
-    if ([[Game sharedInstance] checkForGameCompleated]) {
-        [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            [[Game sharedInstance] showHiddenImage];
-        } completion:^(BOOL finished) {
-            [[Game sharedInstance] setupBordersForAllImagesEnabled:NO];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.mainView animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = @"Compleated";
-                [hud hide:YES afterDelay:1.0];
-                [self.startButton setUserInteractionEnabled:YES];
-                [self.mainView setUserInteractionEnabled:NO];
-            });
-            
-        }];
+    if (touchInGamePoint.x == [gameController getEmptyPoint].x) {
+        if (touchInGamePoint.y < [gameController getEmptyPoint].y) {
+            [gameController moveImagesToBottomFromY:touchInGamePoint.y];
+        }
+        if (touchInGamePoint.y > [gameController getEmptyPoint].y) {
+            [gameController moveImagesToTopFromY:touchInGamePoint.y];
+        }
+    }
+    
+    if ([gameController checkForGameCompleated]) {
+        [gameController endGame];
+        [self.startButton setUserInteractionEnabled:YES];
+        [self.mainView setUserInteractionEnabled:NO];
     }
 }
 
 - (IBAction)startGamePressed:(UIButton *)sender {
-    [[Game sharedInstance] setupBordersForAllImagesEnabled:YES];
-    [[Game sharedInstance] startHidingImages];
+    [gameController startGame];
     [self.mainView setUserInteractionEnabled:YES];
     [self.startButton setUserInteractionEnabled: NO];
 }

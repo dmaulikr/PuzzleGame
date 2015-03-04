@@ -18,7 +18,7 @@
 @property (nonatomic, assign) CGFloat elemWidth;
 @property (nonatomic, assign) CGFloat elemHieght;
 @property (nonatomic, strong) NSString *imageName;
-@property (nonatomic) GamePoint *emptyPoint;
+@property GamePoint *startPoint;
 
 - (GameProperties *)initPropertiesWithImageNamed: (NSString *)imageName;
 

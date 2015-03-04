@@ -12,27 +12,18 @@
 
 @interface Game : NSObject
 
-@property (nonatomic, strong) NSArray *imagesArray;
-@property (nonatomic, strong) NSArray *dataArray;
-
 + (instancetype)sharedInstance;
 
 - (void)getTitlesOfImages: (void(^)(NSArray *))completion;
+- (NSArray *)getDataArray;
+
 - (void)setupGameWithImageNamed: (NSString *)name;
+
 - (GameProperties *)getGameProperties;
-- (void)createArrayWithEmptyImages;
-- (void)completeArrayWithImages;
-- (void)setupBordersForAllImagesEnabled: (BOOL)enabled;
-- (void)startHidingImages;
+- (NSMutableArray *)generateHidingPath;
+
 - (GamePoint *)getGamePointFromCGPoint: (CGPoint)point;
-
-- (void)moveImagesToLeftFromX: (int)fromX;
-- (void)moveImagesToRightFromX: (int)fromX;
-- (void)moveImagesToTopFromY: (int)fromY;
-- (void)moveImagesToBottomFromY: (int)fromY;
-
-- (void)showHiddenImage;
-
-- (BOOL)checkForGameCompleated;
+- (CGPoint)getCGPointFromGamePoint: (GamePoint *)gamePoint;
+- (GamePoint *)getEmptyPoint;
 
 @end
